@@ -14,9 +14,9 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
 const serverless = require("serverless-http");
-var express = require('express')
-var cors = require('cors')
-var app = express()
+
+
+
  
 var whitelist = ['http://localhost:5173', '']
 var corsOptions = {
