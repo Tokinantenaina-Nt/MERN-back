@@ -27,7 +27,7 @@ const corsOptions = {
       callback(new Error("Not allowed by CORS"));
     }
   },
-  credentials: true,
+  credentials: "include",
   allowedHeaders: ["sessionId", "Content-Type"],
   exposedHeaders: ["sessionId"],
   methods: ["GET", "POST", "PUT", "DELETE", "HEAD", "PATCH"],

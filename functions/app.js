@@ -19,7 +19,7 @@ const corsOptions = (req, callback) => {
   const origin = req.header("Origin");
   callback(null, {
     origin: origin,
-    credentials: true
+    credentials: "include"
   });
 };
 
