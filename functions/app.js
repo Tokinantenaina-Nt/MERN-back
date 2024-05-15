@@ -19,8 +19,8 @@ const corsOptions = (req, callback) => {
   const origin = req.header("Origin");
   callback(null, {
     origin: origin,
-    // credentials: true,
-    credentials: "include",
+    credentials: true,
+    // credentials: "include",
     allowedHeaders: ["sessionId", "Content-Type"],
     exposedHeaders: ["sessionId"],
     methods: ["GET", "POST", "PUT", "DELETE", "HEAD", "PATCH"],
