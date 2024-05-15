@@ -1,4 +1,4 @@
-require("dotenv").config({ path: "../config/.env" });
+﻿require("dotenv").config({ path: "../config/.env" });
 require("../config/dbConnex");
 //
 const express = require("express");
@@ -15,21 +15,28 @@ const cors = require("cors");
 
 const serverless = require("serverless-http");
 
-app.use(
-  cors({
-    origin: "*"
-  })
-);
+const corsOptions = (req, callback) => {
+  const origin = req.header("Origin");
+  callback(null, {
+    origin: origin,
+    credentials: true
+  });
+};
 
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+//
+app.get("/", (req, res) => {
+  res.send({ mess: "connected !!!" });
+});
 //jwt
 app.get("*", checkUser);
-app.get("/.netlify/functions/app/jwtid", requireAuth, (req, res) => {
+app.get("/jwtid", requireAuth, (req, res) => {
   if (res.locals.user) {
-    res.status(200).send(res.locals.user._id);
+    res.status(200).send({ message: res.locals.user._id });
   } else {
     res.status(401).json({ message: "Utilisateur non authentifié" });
   }
