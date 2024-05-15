@@ -18,8 +18,8 @@ const serverless = require("serverless-http");
 const corsOptions = (req, callback) => {
     const origin = req.header('Origin');
     callback(null, { 
-        origin: origin, // Renvoie l'origine de la requête
-        credentials: true // Permet l'envoi des cookies et autres informations d'authentification
+        origin: origin, 
+        credentials: true 
     });
 };
 
