@@ -17,7 +17,7 @@ const serverless = require("serverless-http");
 
 const whitelist = [
   "http://localhost:5173",
-  "https://main--mern-back-end-api.netlify.app/.netlify/functions/app/"
+  "https://mern-back-end-api.netlify.app/.netlify/functions/app"
 ];
 
 const corsOptions = (req, callback) => {
