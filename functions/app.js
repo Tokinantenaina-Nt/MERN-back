@@ -14,8 +14,21 @@ const cookieParser = require("cookie-parser");
 const cors = require("cors");
 
 const serverless = require("serverless-http");
-
-app.use(cors());
+var express = require('express')
+var cors = require('cors')
+var app = express()
+ 
+var whitelist = ['http://localhost:5173', '']
+var corsOptions = {
+  origin: function (origin, callback) {
+    if (whitelist.indexOf(origin) !== -1) {
+      callback(null, true)
+    } else {
+      callback(new Error('Not allowed by CORS'))
+    }
+  }
+}
+app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
@@ -39,6 +52,6 @@ app.use("/.netlify/functions/app/api/post", postRouter);
 app.use("/.netlify/functions/app/api/user", userRouter);
 
 //middleware upload error
-app.use("*/upload", upload_checking_error);
+app.use("*/upload", upload_checking_error);  
 
 module.exports.handler = serverless(app);
