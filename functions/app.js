@@ -33,6 +33,10 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
+//
+app.get("/", (req, res) => {
+  res.send({ mess: "connected !!!" });
+});
 //jwt
 app.get("/*", checkUser);
 app.get("/jwtid", requireAuth, (req, res) => {
