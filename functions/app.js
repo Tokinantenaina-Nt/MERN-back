@@ -17,11 +17,10 @@ const serverless = require("serverless-http");
 
 const corsOptions = (req, callback) => {
     const origin = req.header('Origin');
-    if (origin && origin.startsWith('http://localhost')) {
-        callback(null, { origin: true, credentials: true });
-    } else {
-        callback(new Error('Not allowed by CORS'));
-    }
+    callback(null, { 
+        origin: origin, // Renvoie l'origine de la requête
+        credentials: true // Permet l'envoi des cookies et autres informations d'authentification
+    });
 };
 
 app.use(cors(corsOptions));
@@ -34,7 +33,7 @@ app.get("/", (req, res) => {
   res.send({ mess: "connected !!!" });
 });
 //jwt
-app.get("/*", checkUser);
+app.get("*", checkUser);
 app.get("/jwtid", requireAuth, (req, res) => {
   if (res.locals.user) {
     res.status(200).send({ message: res.locals.user._id });
