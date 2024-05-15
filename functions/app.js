@@ -15,15 +15,18 @@ const cors = require("cors");
 
 const serverless = require("serverless-http");
 
-const whitelist = ['http://localhost:5173'];
+const whitelist = [
+  "http://localhost:5173",
+  "https://main--mern-back-end-api.netlify.app/.netlify/functions/app/"
+];
 
 const corsOptions = (req, callback) => {
-    const origin = req.header('Origin');
-    if (whitelist.indexOf(origin) !== -1) {
-        callback(null, { origin: true, credentials: true });
-    } else {
-        callback(new Error('Not allowed by CORS'));
-    }
+  const origin = req.header("Origin");
+  if (whitelist.indexOf(origin) !== -1) {
+    callback(null, { origin: true, credentials: true });
+  } else {
+    callback(new Error("Not allowed by CORS"));
+  }
 };
 
 app.use(cors(corsOptions));
@@ -32,10 +35,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 //jwt
-app.get("*", checkUser);
+app.get("/.netlify/functions/app/*", checkUser);
 app.get("/.netlify/functions/app/jwtid", requireAuth, (req, res) => {
   if (res.locals.user) {
-    res.status(200).send(res.locals.user._id);
+    res.status(200).send({ message: res.locals.user._id });
   } else {
     res.status(401).json({ message: "Utilisateur non authentifié" });
   }
