@@ -19,7 +19,12 @@ const corsOptions = (req, callback) => {
   const origin = req.header("Origin");
   callback(null, {
     origin: origin,
-    credentials: true
+    // credentials: true,
+    credentials: "include",
+    allowedHeaders: ["sessionId", "Content-Type"],
+    exposedHeaders: ["sessionId"],
+    methods: ["GET", "POST", "PUT", "DELETE", "HEAD", "PATCH"],
+    preflightContinue: false
   });
 };
 
@@ -28,10 +33,6 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
-//
-app.get("/", (req, res) => {
-  res.send({ mess: "connected !!!" });
-});
 //jwt
 app.get("*", checkUser);
 app.get("/jwtid", requireAuth, (req, res) => {
