@@ -15,19 +15,15 @@ const cors = require("cors");
 
 const serverless = require("serverless-http");
 
-
-
- 
-var whitelist = ['http://localhost:', '']
-var corsOptions = {
-  origin: function (origin, callback) {
-    if (whitelist.indexOf(origin) !== -1) {
-      callback(null, true)
+const corsOptions = (req, callback) => {
+    const origin = req.header('Origin');
+    if (origin && origin.startsWith('http://localhost')) {
+        callback(null, { origin: true, credentials: true });
     } else {
-      callback(new Error('Not allowed by CORS'))
+        callback(new Error('Not allowed by CORS'));
     }
-  }
-}
+};
+
 app.use(cors(corsOptions));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
