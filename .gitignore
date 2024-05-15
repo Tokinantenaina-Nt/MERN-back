@@ -1,0 +1,12 @@
+node_modules
+config/.env
+tempCode.js
+tempCode.json
+# client/public/uploads/profil/*.jpg
+# client/public/uploads/posts/*.jpg
+# client/public/uploads/posts/*.jpg
+# client/node_modules
+# client/src/data
+*.jpg *.png *.svg
+.env
+client
