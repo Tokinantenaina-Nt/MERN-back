@@ -35,8 +35,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 //jwt
-app.get("/.netlify/functions/app/*", checkUser);
-app.get("/.netlify/functions/app/jwtid", requireAuth, (req, res) => {
+app.get("/*", checkUser);
+app.get("/jwtid", requireAuth, (req, res) => {
   if (res.locals.user) {
     res.status(200).send({ message: res.locals.user._id });
   } else {
