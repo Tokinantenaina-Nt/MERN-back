@@ -15,20 +15,7 @@ const cors = require("cors");
 
 const serverless = require("serverless-http");
 
-const whitelist = [
-   "https://mern-back-end-api.netlify.app/.netlify/functions/app"
-];
-
-const corsOptions = (req, callback) => {
-  const origin = req.header("Origin");
-  if (whitelist.indexOf(origin) !== -1) {
-    callback(null, { origin: true, credentials: true });
-  } else {
-    callback(new Error("Not allowed by CORS"));
-  }
-};
-
-app.use(cors(corsOptions));
+app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
