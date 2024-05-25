@@ -20,13 +20,7 @@ const allowedOrigins = process.env.ALLOWED_ORIGINS.split(",");
 console.log(allowedOrigins);
 
 const corsOptions = {
-  origin: function(origin, callback) {
-    if (allowedOrigins.includes(origin)) {
-      callback(null, true);
-    } else {
-      callback(new Error("Not allowed by CORS"));
-    }
-  },
+ origin: "http://localhost:5173",
   credentials: true,
   allowedHeaders: ["sessionId", "Content-Type"],
   exposedHeaders: ["sessionId"],
