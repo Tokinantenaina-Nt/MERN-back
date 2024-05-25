@@ -38,7 +38,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 //jwt
-app.get("/.netlify/functions/app/", res =>{
+app.get("/", res =>{
 res.send('HELLO')  
 })
 //app.get("/.netlify/functions/app/*", checkUser);
