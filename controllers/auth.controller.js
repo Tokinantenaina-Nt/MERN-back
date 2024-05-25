@@ -37,6 +37,10 @@ module.exports.signIn = async (req, res) => {
 };
 
 module.exports.logout = async (req, res) => {
-  res.cookie("jwt", "", { maxAge: 1 });
+  res.cookie("jwt", "", { 
+      httpOnly: true,
+      maxAge: 1,
+      secure: false,
+      sameSite: "none" });
   res.redirect("/");
 };
