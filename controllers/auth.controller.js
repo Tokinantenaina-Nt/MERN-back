@@ -27,7 +27,7 @@ module.exports.signIn = async (req, res) => {
       httpOnly: true,
       maxAge,
       secure: true,
-      sameSite: "None"
+      sameSite: "none"
     });
     res.status(200).json({ user: user._id });
   } catch (err) {
@@ -41,6 +41,6 @@ module.exports.logout = async (req, res) => {
       httpOnly: true,
       maxAge: 1,
       secure: true,
-      sameSite: "None" });
+      sameSite: "none" });
   res.redirect("/");
 };
