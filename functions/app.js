@@ -16,7 +16,8 @@ const cors = require("cors");
 const serverless = require("serverless-http");
 
 const corsOptions = {
-  origin: "http://localhost:5173",
+ // origin: "http://localhost:5173",
+  origin: "https://raccoonect.netlify.app/",
   credentials: true,
   allowedHeaders: ["sessionId", "Content-Type"],
   exposedHeaders: ["sessionId"],
