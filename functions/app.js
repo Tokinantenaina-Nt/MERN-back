@@ -30,7 +30,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 //jwt
-app.get("*", checkUser);
+app.get("/.netlify/functions/app/*", checkUser);
 app.get("/.netlify/functions/app/jwtid", requireAuth, (req, res) => {
   if (res.locals.user) {
     res.status(200).send({ message: res.locals.user._id });
@@ -44,6 +44,6 @@ app.use("/.netlify/functions/app/api/post", postRouter);
 app.use("/.netlify/functions/app/api/user", userRouter);
 
 //middleware upload error
-app.use("*/upload", upload_checking_error);
+app.use("/.netlify/functions/app/*/upload", upload_checking_error);
 
 module.exports.handler = serverless(app);
