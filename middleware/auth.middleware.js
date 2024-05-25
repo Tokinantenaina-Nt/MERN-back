@@ -5,7 +5,7 @@ const SECRET_TOKEN = process.env.SECRET_TOKEN;
 module.exports.checkUser = (req, res, next) => {
   const token = req.cookies.jwt;
   if (token) {
-     jwt.verify(token, `${SECRET_TOKEN}`, async (err, decodedToken) => {
+    jwt.verify(token, `${SECRET_TOKEN}`, async (err, decodedToken) => {
       if (err) {
         res.locals.user = null;
         next();
@@ -24,7 +24,7 @@ module.exports.requireAuth = (req, res, next) => {
   const token = req.cookies.jwt;
   const SECRET_TOKEN = process.env.SECRET_TOKEN;
   if (token) {
-     jwt.verify(token, `${SECRET_TOKEN}`, async (err, decodedToken) => {
+    jwt.verify(token, `${SECRET_TOKEN}`, async (err, decodedToken) => {
       if (err) {
         console.error(err);
         res.locals.user = null;
