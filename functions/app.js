@@ -34,7 +34,7 @@ app.use(cookieParser());
 app.get("/.netlify/functions/app/*", checkUser);
 app.get("/.netlify/functions/app/jwtid", requireAuth, (req, res) => {
   if (res.locals.user) {
-    res.status(200).send({ message: res.locals.user._id });
+    res.status(200).send({ res.locals.user._id });
   } else {
     res.status(401).json({ message: "Utilisateur non authentifié" });
   }
