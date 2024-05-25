@@ -4,7 +4,7 @@ const maxAge = 3 * 24 * 60 * 60 * 1000;
 const { signUpErr, signInErr } = require("../utils/errors.utils");
 const SECRET_TOKEN = process.env.SECRET_TOKEN;
 const createToken = id => {
-  return jwt.sign({ id }, ${SECRET_TOKEN});
+  return jwt.sign({ id }, `${SECRET_TOKEN}`);
 };
 
 module.exports.signUp = async (req, res) => {
