@@ -26,8 +26,8 @@ module.exports.signIn = async (req, res) => {
     res.cookie("jwt", token, {
       httpOnly: true,
       maxAge,
-      secure: false,
-      sameSite: "none"
+      secure: true,
+      sameSite: "None"
     });
     res.status(200).json({ user: user._id });
   } catch (err) {
@@ -40,7 +40,7 @@ module.exports.logout = async (req, res) => {
   res.cookie("jwt", "", { 
       httpOnly: true,
       maxAge: 1,
-      secure: false,
-      sameSite: "none" });
+      secure: true,
+      sameSite: "None" });
   res.redirect("/");
 };
