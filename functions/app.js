@@ -21,7 +21,7 @@ origin: "http://localhost:5173",
   allowedHeaders: ["sessionId", "Content-Type"],
   exposedHeaders: ["sessionId"],
   methods: ["GET", "POST", "PUT", "DELETE", "HEAD", "PATCH"],
- // preflightContinue: false
+ preflightContinue: false
 };
 
 app.use(cors(corsOptions));
