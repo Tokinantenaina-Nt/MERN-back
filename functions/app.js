@@ -41,7 +41,7 @@ app.use(cookieParser());
 app.get("/.netlify/functions/app/", res =>{
 res.send('HELLO')  
 })
-app.get("/.netlify/functions/app/*", checkUser);
+//app.get("/.netlify/functions/app/*", checkUser);
 app.get("/.netlify/functions/app/jwtid", requireAuth, (req, res) => {
   if (res.locals.user) {
     res.status(200).send({ res.locals.user._id });
