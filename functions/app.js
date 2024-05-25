@@ -15,17 +15,13 @@ const cors = require("cors");
 
 const serverless = require("serverless-http");
 
-const corsOptions = (req, callback) => {
-  const origin = req.header("Origin");
-  callback(null, {
-    origin: origin,
-    credentials: true,
-    // credentials: "include",
-    allowedHeaders: ["sessionId", "Content-Type"],
-    exposedHeaders: ["sessionId"],
-    methods: ["GET", "POST", "PUT", "DELETE", "HEAD", "PATCH"],
-    preflightContinue: false
-  });
+const corsOptions =  {
+origin: "http://localhost:5173",
+  credentials: true,
+  allowedHeaders: ["sessionId", "Content-Type"],
+  exposedHeaders: ["sessionId"],
+  methods: ["GET", "POST", "PUT", "DELETE", "HEAD", "PATCH"],
+  preflightContinue: false
 };
 
 app.use(cors(corsOptions));
