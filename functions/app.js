@@ -1,4 +1,4 @@
-﻿require("dotenv").config({ path: "../config/.env" });
+require("dotenv").config({ path: "../config/.env" });
 require("../config/dbConnex");
 //
 const express = require("express");
@@ -15,13 +15,13 @@ const cors = require("cors");
 
 const serverless = require("serverless-http");
 
-const corsOptions =  {
-origin: "http://localhost:5173",
+const corsOptions = {
+  origin: "http://localhost:5173",
   credentials: true,
   allowedHeaders: ["sessionId", "Content-Type"],
   exposedHeaders: ["sessionId"],
   methods: ["GET", "POST", "PUT", "DELETE", "HEAD", "PATCH"],
- preflightContinue: false
+  preflightContinue: false
 };
 
 app.use(cors(corsOptions));
@@ -30,13 +30,11 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cookieParser());
 
 //jwt
-app.get("/", (req,res) => {
-res.send('HELLO')  
-})
-//app.get("/.netlify/functions/app/*", checkUser);
+
+app.get("/.netlify/functions/app/*", checkUser);
 app.get("/.netlify/functions/app/jwtid", requireAuth, (req, res) => {
   if (res.locals.user) {
-    res.status(200).send({ res.locals.user._id });
+    res.status(200).send({ message: res.locals.user._id });
   } else {
     res.status(401).json({ message: "Utilisateur non authentifié" });
   }
@@ -47,6 +45,6 @@ app.use("/.netlify/functions/app/api/post", postRouter);
 app.use("/.netlify/functions/app/api/user", userRouter);
 
 //middleware upload error
-app.use("/.netlify/functions/app/upload", upload_checking_error);
+app.use("*/upload", upload_checking_error);
 
 module.exports.handler = serverless(app);
