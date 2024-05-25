@@ -37,10 +37,11 @@ module.exports.signIn = async (req, res) => {
 };
 
 module.exports.logout = async (req, res) => {
-  res.cookie("jwt", "", { 
-      httpOnly: true,
-      maxAge: 1,
-      secure: true,
-      sameSite: "none" });
+  res.cookie("jwt", "", {
+    httpOnly: true,
+    maxAge: 1,
+    secure: true,
+    sameSite: "none"
+  });
   res.redirect("/");
 };
