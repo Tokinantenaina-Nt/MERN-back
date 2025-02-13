@@ -20,7 +20,7 @@ const allowedOrigins = process.env.ALLOWED_ORIGINS.split(",");
 console.log(allowedOrigins);
 
 const corsOptions = {
- origin: "http://localhost:5173",
+ origin: "*",
   credentials: true,
   allowedHeaders: ["sessionId", "Content-Type"],
   exposedHeaders: ["sessionId"],
