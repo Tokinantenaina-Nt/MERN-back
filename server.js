@@ -20,7 +20,7 @@ const allowedOrigins = process.env.ALLOWED_ORIGINS.split(",");
 console.log(allowedOrigins);
 
 const corsOptions = {
- origin: "*",
+ origin: "https://raccoonect.netlify.app",
   credentials: true,
   allowedHeaders: ["sessionId", "Content-Type"],
   exposedHeaders: ["sessionId"],
